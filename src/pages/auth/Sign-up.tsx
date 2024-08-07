@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { SignUpSchema, SignUpSchemaType } from "./validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import API from "@/lib/api";
 import LoadingButton from "@/components/LoadingButton";
@@ -22,6 +22,7 @@ import PasswordInput from "@/components/PasswordInput";
 const SignUp = () => {
   const [nextStep, setNextStep] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   const form = useForm<SignUpSchemaType>({
     resolver: zodResolver(SignUpSchema),
     defaultValues: {
@@ -37,6 +38,7 @@ const SignUp = () => {
     try {
       await API.post("/users/sign-up", values);
 
+      navigate("/");
     } catch (error: any) {
       setError(error?.response?.data);
     }
