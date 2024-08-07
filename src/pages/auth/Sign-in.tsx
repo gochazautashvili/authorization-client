@@ -14,7 +14,7 @@ import { SignInSchema, SingInSchemaType } from "./validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import GoogleButton from "./GoogleButton";
 import FacebookButton from "./FacebookButton";
 import API from "@/lib/api";
@@ -23,7 +23,6 @@ import PasswordInput from "@/components/PasswordInput";
 
 const SignIn = () => {
   const [error, setError] = useState("");
-  const navigate = useNavigate();
   const form = useForm<SingInSchemaType>({
     resolver: zodResolver(SignInSchema),
     defaultValues: {
@@ -37,8 +36,6 @@ const SignIn = () => {
 
     try {
       await API.post("/users/sign-in", values);
-
-      navigate("/");
     } catch (error: any) {
       setError(error?.response?.data);
     }
