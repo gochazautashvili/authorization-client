@@ -16,7 +16,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import GoogleButton from "./GoogleButton";
-import FacebookButton from "./FacebookButton";
 import API from "@/lib/api";
 import LoadingButton from "@/components/LoadingButton";
 import PasswordInput from "@/components/PasswordInput";
@@ -125,7 +124,6 @@ const SignIn = () => {
           </div>
           <div className="flex flex-col space-y-3">
             <GoogleButton />
-            <FacebookButton />
           </div>
           <h1 className="flex items-center justify-center gap-3 text-sm">
             Don&apos;t have an account?{" "}
